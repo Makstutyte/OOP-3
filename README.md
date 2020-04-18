@@ -159,6 +159,25 @@ Duomenų rūšiavimo laikų ir naudojant std::vector konteinerį palyginimas:
 | 1000000  | 0.740968 | 0.202667 |  0.44283  | 0.32956 |
 | 10000000 | 5.14563  | 3.37423 | 1.99313  | 1.02471 |
 
+
+## Programos versijos v1.1 veikimo spartos analizė
+
+Duomenų rūšiavimo laikų ir naudojamų duomenų tipų palyginimas:
+
+| Studentų įrašų kiekis | Struct | class | 
+| ------------- | ------------- | ------------- |
+| 1000000  | 0.409933 | 0.395978 | 
+| 10000000 | 1.99471 | 1.94565 | 
+
+
+Duomenų rūšiavimo laikų ir naudojant class duomenų tipą bei std::vector konteinerį palyginimas be ir su flag'ais:
+
+| Studentų įrašų kiekis | class (be flag'ų) | -O1 | -O2 | -O3 |
+| ------------- | ------------- | ------------- | ------------- | ------------- | 
+| 1000000  | 0.395978| 0.09627 |  0.0923139  | 0.087906 | 
+| 10000000 | 1.94565  | 0.453847 | 0.440215 | 0.425507 |
+
+
 ### Išvados
 Naudojami algoritmai:
 * std::copy
@@ -194,3 +213,9 @@ Penktoji programos versija
 <br />[v1.0](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v1.0) 
 Šeštoji programos versija
 * Programa, kuri leidžia vartotojui pasirinkti, kokiame STL konteineryje (vector, list ar deque) bus saugomi duomenys, pasirinkti pagal, kokią strategiją bus suskirstyti failai.
+
+<br />[v1.1](https://github.com/Makstutyte/OOP-3/releases/tag/v1.1) 
+Šeštoji programos versija
+* Patobulinta programa, kurioje:
+   * vietoje struktūros (struct) duomenims saugoti yra taikomas klasės (class) duomenų tipas 
+   * Klasėje (class) yra naudojamas konstruktorius ( constructor), destruktorius (destructor) bei get'eriai ir  set'eriai
