@@ -49,171 +49,30 @@ Pasirinkus duomenų skaitymą:
 
 Po šios veiksmų sekos atspausdinami du .txt failai pagal galutinio balo rezultatą (jei galutinis balas >=5.0 duomenys išspausdinami į failą "vykeliai.txt", jei galutinis balas < 5.0  duomenys išspausdinami į failą "nevykeliai.txt"), nurodantys studentų vardus, pavardes ir galutinius rezultatus.
 
-
-  Galutinio rezultato formulės:
-  * Galutinis rezultatas = (namų darbų vidurkis) * 0.4 + (egzamino balas) * 0.6;
-  * Galutinis rezultatas = (namų darbų mediana) * 0.4 + (egzamino balas) * 0.6;
-  
-  ## Programos versijos v0.4 veikimo spartos analizė
-
-Išmatuotas laikas pateikiamas sekundėmis. Namų darbų kiekis sugeneruotuose failuose - 5.
-
-| Duomenų kiekis  | Duomenų failo generavimas | Duomenų failo skaitymas  | Rezultatų rūšiavimas | Surūšiuotų duomenų išspausdinimas |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| 1000  | 1.59454  | 0.018584  | 0.001812 | 0.060258  |
-| 10000 | 2.2234 | 0.048893  | 0.008486 | 0.572778  |
-| 100000 | 4.95502  | 1.08912  | 0.163851 | 14.5011 |
-| 1000000  | 8.23857 | 5.56081 | 1.17097  |  148.988  |
-| 10000000  | 74.0793 | 59.8561 | 141.068 | 321.963  |
-
-
-## Programos versijos v0.5 veikimo spartos analizė
-
-Įrangos parametrai:
-| CPU | RAM | SSD |
-| ------------- | ------------- | ------------- |
-| Intel CORE i5 7th Gen 2.70 GHz | 8 GB  | 256 GB |
-
-Išmatuotas laikas pateikiamas sekundėmis. Namų darbų kiekis sugeneruotuose failuose - 5.
-
-Duomenų skaitymas: 
-| Studentų duomenų kiekis |std::vector| std::list | std::deque |
-| ------------- | ------------- | ------------- | ------------- |
-| 1000  | 0.05164  | 0.013033 | 0.00715 |
-| 10000  | 0.0825  | 0.088022 | 0.080193 |
-| 100000 | 0.97028 | 0.79475 | 0.612528 |
-| 1000000  | 8.14501 | 14.1512 | 9.16061 |
-| 10000000 | 69.2747  | 124.473 | 93.1991 |
-
-Duomenų rūšiavimas: 
-| Studentų duomenų kiekis |std::vector| std::list | std::deque |
-| ------------- | ------------- | ------------- | ------------- |
-| 1000  | 0.001287  |  0.00107  | 0.002456 |
-| 10000  | 0.004886 | 0.006977  | 0.018425 |
-| 100000 | 0.063788| 0.056337 | 0.113519 |
-| 1000000  | 0.733202 |  0.945085  | 1.67702 |
-| 10000000 |  42.893  |25.94792 | 41.2374|
-
-
-Laikai naudojant STL konteinerį vector:
-| std::vector | Duomenų skaitymas | Duomenų rūšiavimas |
-| ------------- | ------------- | ------------- |
-| 1000  | 0.05164  | 0.001287 |
-| 10000  | 0.0825  | 0.004886 |
-| 100000 | 0.97028  | 0.063788 |
-| 1000000  | 8.14501 | 0.733202 |
-| 10000000 | 69.2747  | 42.893 |
-
-
-Laikai naudojant STL konteinerį list:
-| std::list | Duomenų skaitymas | Duomenų rūšiavimas |
-| ------------- | ------------- | ------------- |
-| 1000  | 0.013033 | 0.00107 |
-| 10000  | 0.088022  | 0.006977 |
-| 100000 | 0.79475  | 0.056337 |
-| 1000000  | 14.1512 | 0.945085 |
-| 10000000 | 124.473  | 25.94792 |
-
-
-Laikai naudojant STL konteinerį deque:
-| std::deque| Duomenų skaitymas | Duomenų rūšiavimas |
-| ------------- | ------------- | ------------- |
-| 1000  | 0.00715 | 0.002456 |
-| 10000  | 0.080193  | 0.018425 |
-| 100000 | 0.612528 | 0.113519 |
-| 1000000  | 9.16061 | 1.67702 |
-| 10000000 | 93.1991 | 41.2374|
-
-## Programos versijos v1.0 veikimo spartos analizė
-
-### 1 - oji strategija 
-Konteinerio skaidymas (rūšiavimas) į du naujus to paties tipo konteinerius: "vykeliai" ir "nevykeliai".
-
-### 2 - oji strategija  
-Konteinerio skaidymas (rūšiavimas) panaudojant tik vieną naują konteinerį: "vykeliai". Tokiu būdu, jei studento galutinis balas yra >=5.0, jo duomenys bus įkelti į naująjį "vykelių" konteinerį ir ištrinti iš bendro studentai konteinerio.
-
-## Programos veikimo spartos analizė
-
-Išmatuotas laikas pateikiamas sekundėmis. Namų darbų kiekis sugeneruotuose failuose - 5.
-
-Duomenų rūšiavimo laikų ir naudojamų STL konteinerių palyginimas:
-
-| Studentų įrašų kiekis | std::vector 1-oji strategija | std::vector 2-oji strategija | std::list 1-oji strategija | std::list 2-oji strategija | std::deque 1-oji strategija | std::deque 2-oji strategija |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| 1000  | 0.003932 | 0.001158 | 0.005124 | 0.001559 | 0.0029813 | 0.0010732 |
-| 10000  | 0.024134 | 0.017482 | 0.015617 | 0.0098251 | 0.084553  |  0.006508 |
-| 100000 | 0.143842  | 0.092961 | 0.193978 | 0.068597 | 0.372512 | 0.097351 |
-| 1000000  | 0.740968 | 0.44283 | 1.2678 | 0.697743 | 3.115801 | 1.46423 |
-| 10000000 | 5.14563  | 1.99313 | 6.2745 | 2.48977 | 13.59419 | 8.3652 |
-
-### Išvados
-Su visais STL konteineriais (std::vector, std::list, std::deque) naudojant 2-ąją strategiją duomenų išrūšiavimas vyksta efektyviau (greičiau). Std::vector konteineris iš naudojamų konteinerių laiko prasme išsiskiria kaip efektyviausias. 
-
-Duomenų rūšiavimo laikų ir naudojant std::vector konteinerį palyginimas:
-
-| Studentų įrašų kiekis | std::vector 1-oji strategija be papildomų algoritmų | std::vector 1-oji strategija su papildomais algoritmais | std::vector 2-oji strategija be papildomų algoritmų | std::vector 2-oji strategija su papildomais algoritmais |
-| ------------- | ------------- | ------------- | ------------- | ------------- | 
-| 1000  | 0.003932 | 0.002612 | 0.001158 | 0.00155713 |
-| 10000  | 0.024134 | 0.0131385 | 0.017482 | 0.010418 | 
-| 100000 | 0.143842  | 0.067599 | 0.092961 | 0.08172 |
-| 1000000  | 0.740968 | 0.202667 |  0.44283  | 0.32956 |
-| 10000000 | 5.14563  | 3.37423 | 1.99313  | 1.02471 |
-
-
 ## Programos versijos v1.1 veikimo spartos analizė
 
-Duomenų rūšiavimo laikų ir naudojamų duomenų tipų palyginimas:
+Programos veikomo laikų ir naudojamų duomenų tipų palyginimas:
 
 | Studentų įrašų kiekis | Struct | class | 
 | ------------- | ------------- | ------------- |
-| 1000000  | 0.409933 | 0.395978 | 
-| 10000000 | 1.99471 | 1.94565 | 
+| 100000  | 11.68695 | 9.85107 | 
+| 1000000 | 29.8449 | 20.0486 | 
+| 10000000  | 120.484 | 81.0496 | 
 
 
-Duomenų rūšiavimo laikų ir naudojant class duomenų tipą bei std::vector konteinerį palyginimas be ir su flag'ais:
+Programos veikimo laikų ir naudojant class duomenų tipą bei std::vector konteinerį palyginimas be ir su flag'ais:
 
 | Studentų įrašų kiekis | class (be flag'ų) | -O1 | -O2 | -O3 |
 | ------------- | ------------- | ------------- | ------------- | ------------- | 
-| 1000000  | 0.395978| 0.09627 |  0.0923139  | 0.087906 | 
-| 10000000 | 1.94565  | 0.453847 | 0.440215 | 0.425507 |
+| 100000  | 9.85107 | 9.1918 |  7.88156 | 6.04284 | 
+| 1000000 | 20.0486 | 16.1624 | 15.1055 | 13.9243 |
+| 10000000 | 81.0496  | 48.4198 | 46.6522 | 45.2916 |
 
 
-### Išvados
-Naudojami algoritmai:
-* std::copy
-* std::partition
-Algoritmų naudojimas paspartina duomenų išrūšiavimą į dvi atskiras grupes pagal galutinį balą.
+## Ankstesnė užduotis
+<br />[Objektinis-Programavimas-2-oji-uzduotis](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis) 
 
 ## Releases 
-<br />[v0.1](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v0.1) 
-Pirmoji programos versija
-* Programa apskaiciuojanti galutinius rezultatus pagal vartotojo suvestus arba atsitiktinai sugeneruotus duomenis.
-
-<br />[v0.2](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v0.2) 
-Antroji programos versija
-* Programa apskaiciuojanti galutinius rezultatus pagal vartotojo suvestus, perskaitytus iš failo arba atsitiktinai sugeneruotus duomenis.
-
-<br />[v0.3](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v0.3) 
-Trečioji programos versija
-* Programa apskaiciuojanti galutinius rezultatus pagal vartotojo suvestus, perskaitytus iš failo arba atsitiktinai sugeneruotus duomenis, kurioje funkcijos ir struktūra yra laikomi atskiruose antraštiniuose failuose.
-
-<br />[v0.4](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v0.4) 
-Ketvirtoji programos versija
-* Programa, kuri 
-  *  nuskaito vartotojo įvedamus duomenis
-  *  nuskaito faile esančius duomenis
-  *  sugeneruoja naujus duomenų failus
-
-Programa taip pat skirsto duomenis pagal galutinį balą ir atspausdina juos dviejuose skirtinguose failuose (jei galutinis balas >=5.0 duomenys išspausdinami į failą "vykeliai.txt", jei galutinis balas < 5.0  duomenys išspausdinami į failą "nevykeliai.txt").
-
-<br />[v0.5](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v0.5) 
-Penktoji programos versija
-* Programa, kuri leidžia vartotojui pasirinkti, kokiame STL konteineryje (vector, list ar deque) bus saugomi duomenys, bei apskaiciuojanti galutinius rezultatus pagal vartotojo suvestus, perskaitytus iš failo arba atsitiktinai sugeneruotus duomenis.
-
-<br />[v1.0](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis/releases/tag/v1.0) 
-Šeštoji programos versija
-* Programa, kuri leidžia vartotojui pasirinkti, kokiame STL konteineryje (vector, list ar deque) bus saugomi duomenys, pasirinkti pagal, kokią strategiją bus suskirstyti failai.
-
 <br />[v1.1](https://github.com/Makstutyte/OOP-3/releases/tag/v1.1) 
 Šeštoji programos versija
 * Patobulinta programa, kurioje:
