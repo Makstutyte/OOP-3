@@ -10,31 +10,30 @@ double rastimediana (std::vector<int> vekt)
     return (double)(size % 2 == 0 ? ((double)(vekt[mid]) + (double)(vekt[mid-1])) / 2 : (double)(vekt[mid]));
 }
 /// funkcija apskaiciuojanti masyvo elementu vidurki
-double vidurkis (int* nd, int n)
+double vidurkis (int const* nd, int n)
 {
     double sum = 0;
     for (int i = 0; i < n; i ++) sum += nd[i];
     return (sum / n);
 }
 /// funkcija apsakiciuojanti galutini rezultata pagal vartotojo pasirinktus skaiciavimo metodus
-double galutinis (char kas_cia1, Studentas1* Studentas)
+double galutinis (char kas_cia1,  Studentas1& Studentas)
 {
     double nd;
-      if(kas_cia1 == 'm') nd = rastimediana (Studentas->vektoriukas);
-           else nd = vidurkis(&Studentas->vektoriukas[0], Studentas->vektoriukas.size());
-    return (0.4 * nd + 0.6 * Studentas->egz);
+      if(kas_cia1 == 'm') nd = rastimediana (Studentas.vektoriukas);
+           else nd = vidurkis(&Studentas.vektoriukas[0], Studentas.vektoriukas.size());
+    return (0.4 * nd + 0.6 * Studentas.getExam());
 }
 
-double galutinis_skaitant (char kas_cia1, Studentas1* Studentas, std::vector<int> vektoriukas )
+double galutinis_skaitant (char kas_cia1,  Studentas1& Studentas, std::vector<int> vektoriukas )
 {
     double nd; int n=vektoriukas.size();
       if(kas_cia1 == 'm') nd = rastimediana (vektoriukas);
-           else nd = vidurkis(&vektoriukas[0], n );
-    return (0.4 * nd + 0.6 * Studentas->egz);
+           else nd = vidurkis(&vektoriukas[0], n);
+    return (0.4 * nd + 0.6 * Studentas.getExam());
 }
 
-/// funkcija generuojanti namu darbu ir egzamino balus
-void pazymiu_generavimas (char kas_cia, Studentas1* Studentas)
+void pazymiu_generavimas (char kas_cia,  Studentas1& Studentas)
 {
     int galas=0; int kiek=1;
     std::cout << "Generuojamu pazymiu kiekis: "; std::cin >> kiek; std::cout<<std::endl;
@@ -45,22 +44,21 @@ void pazymiu_generavimas (char kas_cia, Studentas1* Studentas)
     std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
     std::uniform_int_distribution<int> dist(1, 10);
             do
-            {       Studentas->vektoriukas.push_back(dist(mt));
-                    std::cout  << Studentas->vektoriukas[Studentas->n]<<" " ;
-                    Studentas->n ++; kiek--;
+            {       Studentas.vektoriukas.push_back(dist(mt));
+                    std::cout  << Studentas.vektoriukas[Studentas.n]<<" " ;
+                    Studentas.n ++; kiek--;
             } while (galas != kiek);
 
-    std::cout<<std::endl; Studentas->egz = dist(mt);
-    std::cout << "Egzamino balas: " << Studentas->egz <<std::endl; std::cout<<std::endl;
+    std::cout<<std::endl; Studentas.setExam(dist(mt));
+    std::cout << "Egzamino balas: " << Studentas.getExam() <<std::endl; std::cout<<std::endl;
 }
 
-bool rikiuojam(Studentas1 a, Studentas1  b)
+bool rikiuojam( Studentas1& a,  Studentas1& b)
 {
-    return a.vardas < b.vardas;
+    return a.getName() < b.getName();
 }
 
-/// rikiuojame i faila
-void I_FAILA_pazymiu_generavimas (Studentas1* Studentas, std::string pavadinimas, int kiek)
+void I_FAILA_pazymiu_generavimas ( Studentas1& Studentas, std::string pavadinimas, int kiek)
 {
     int galas=0; int kiek1; int ST;  int galas_st=0; int nezinau_kas_vyksta=0;
     Timer t;
@@ -94,8 +92,8 @@ void I_FAILA_pazymiu_generavimas (Studentas1* Studentas, std::string pavadinimas
              eilutis  << std::setw(10) << std::left << vektoriukas[a];
              a ++;
         }
-             Studentas->egz = dist(mt);
-             eilutis << Studentas->egz;
+            Studentas.setExam(dist(mt));
+             eilutis << Studentas.getExam();
              eilutis << "\n";
         i_faila << eilutis.str();
     }
@@ -103,7 +101,7 @@ void I_FAILA_pazymiu_generavimas (Studentas1* Studentas, std::string pavadinimas
             std::cout << t.elapsed() <<std::endl;
 }
 
-bool rikiuojam_pagal_bala(Studentas1 a, Studentas1  b)
+bool rikiuojam_pagal_bala( Studentas1& a,  Studentas1& b)
 {
     return a.galutinis < b.galutinis;
 }
@@ -129,11 +127,11 @@ void vektorius()
     std::cout << "Generuojamu pazymiu kiekis: "; std::cin >> kiek; std::cout<<std::endl;
     ar_tinkamas_skaiciukas (kiek, 1, daugiausia);
 
-         I_FAILA_pazymiu_generavimas (&laikinas, "1000.txt", kiek);  failas="1000.txt";
-          I_FAILA_pazymiu_generavimas (&laikinas, "10000.txt", kiek);  failas="10000.txt";
-           I_FAILA_pazymiu_generavimas (&laikinas, "100000.txt", kiek);  failas="100000.txt";
-            I_FAILA_pazymiu_generavimas (&laikinas, "1000000.txt", kiek);  failas="1000000.txt";
-             I_FAILA_pazymiu_generavimas (&laikinas, "10000000.txt", kiek);  failas="10000000.txt";
+         I_FAILA_pazymiu_generavimas (laikinas, "1000.txt", kiek);  failas="1000.txt";
+          I_FAILA_pazymiu_generavimas (laikinas, "10000.txt", kiek);  failas="10000.txt";
+           I_FAILA_pazymiu_generavimas (laikinas, "100000.txt", kiek);  failas="100000.txt";
+            I_FAILA_pazymiu_generavimas (laikinas, "1000000.txt", kiek);  failas="1000000.txt";
+             I_FAILA_pazymiu_generavimas (laikinas, "10000000.txt", kiek);  failas="10000000.txt";
              std::cout <<std::endl;
 
           std::cout << "tolimesni veiksmai atleikami su: "<<std::endl;
@@ -206,9 +204,12 @@ void vektorius()
                 nd_kiekis_faile -= 3;
                 int i = 0; Studentas1 tmp, tmp2;
 
-              while(duom >> tmp.vardas)
+                std::string tmpVardas, tmpPavarde;
+              while(duom >> tmpVardas)
                 {
-                    duom >> tmp.pavarde;
+                    tmp.setName(tmpVardas);
+                    duom >> tmpPavarde;
+                    tmp.setSurname(tmpPavarde);
                     
                     for (int j = 0; j < nd_kiekis_faile; j++)
                     {
@@ -218,8 +219,10 @@ void vektorius()
                             }
                         duom >> nd; vektoriukas.push_back(nd);
                     }
-                    duom >> tmp.egz;
-                    tmp.galutinis=galutinis_skaitant(vidurkis_mediana, &tmp, vektoriukas);
+                    int tmpEgz;
+                    duom >> tmpEgz;
+                    tmp.setExam(tmpEgz);
+                    tmp.galutinis=galutinis_skaitant(vidurkis_mediana, tmp, vektoriukas);
                     vektoriukas.clear(); Studentas.push_back(tmp);
                 }
             std::cout << "Skaitymas is failo uztruko ->  " ;
@@ -232,7 +235,12 @@ void vektorius()
         {   Studentas1 temp; std::cout<<std::endl;
             /// ivedamas vartotojaus vardas
             std::cout << kelintas + 1 << "-studentas-----------------------------------------------" << std::endl;
-            std::cout << "Vardas, pavarde: "; std::cin >> temp.vardas >> temp.pavarde; std::cout<<std::endl;
+            std::cout << "Vardas, pavarde: "; 
+
+            std::string tempVardas, tempPavarde;
+            std::cin >> tempVardas >> tempPavarde; std::cout<<std::endl;
+            temp.setName(tempVardas);
+            temp.setSurname(tempPavarde);
 
               if(generuojam == 'n')
                 {
@@ -249,16 +257,19 @@ void vektorius()
                         }
                        /// vartotojas iveda egzamino bala
                        std::cout<<std::endl;
-                       std::cout << "Egzamino balas: "; std::cin >> temp.egz;
-                       ar_tinkamas_skaiciukas(temp.egz, 1, 10); std::cout<<std::endl;
+                        int tempEgz;
+                       std::cout << "Egzamino balas: "; std::cin >> tempEgz;
+                       ar_tinkamas_skaiciukas(tempEgz, 1, 10); std::cout<<std::endl;
+                       temp.setExam(tempEgz);
+                       
                 }
                     /// vartotojas pasirinkimas generuoti namu darbu ir egzamino balus
-                    else if (generuojam == 'g') pazymiu_generavimas(vektorius_masyvas, &temp);
+                    else if (generuojam == 'g') pazymiu_generavimas(vektorius_masyvas, temp);
             Studentas.push_back(temp); kelintas++; studentu_kiek--;
         } while (pabaiga!=studentu_kiek);
      
         for (int i = 0; i < Studentas.size(); i ++)
-            Studentas[i].galutinis=galutinis(vidurkis_mediana, &Studentas[i]);    
+            Studentas[i].galutinis=galutinis(vidurkis_mediana, Studentas[i]);    
  }
  
  int dydis=Studentas.size();
@@ -302,8 +313,7 @@ void vektorius()
                 Timer t;
                 kiek2 = count_if (Studentas.begin(), Studentas.end(), [](Studentas1 x)
                 { 
-                    return x.galutinis>=5.0; 
-                    
+                    return x.galutinis>=5.0;    
                 }); 
                 kiek2=kiek2-1;
                 vykeliai2.resize(kiek2);  
@@ -404,11 +414,11 @@ else if(strategija==2 && papildomi_algoritmai=='t')
                     if (strategija==1)
                     {
                        for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].vardas << " \t\t" << vykeliai2[j].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
+                        vykeliai << vykeliai2[j].getName() << " \t\t" << vykeliai2[j].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
                         vykeliai2[j].galutinis << std::endl;  
 
                         for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].vardas << " \t\t" << nevykeliai2[k].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
+                         nevykeliai << nevykeliai2[k].getName() << " \t\t" << nevykeliai2[k].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
                          nevykeliai2[k].galutinis << std::endl;
                     }
                     
@@ -416,11 +426,11 @@ else if(strategija==2 && papildomi_algoritmai=='t')
                     {
     
                          for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].vardas << " \t\t" << vykeliai2[k].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
+                         vykeliai << vykeliai2[k].getName() << " \t\t" << vykeliai2[k].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
                          vykeliai2[k].galutinis << std::endl;
 
                          for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].vardas << " \t\t" << Studentas[j].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
+                        nevykeliai << Studentas[j].getName() << " \t\t" << Studentas[j].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
                         Studentas[j].galutinis << std::endl; 
                          
                     }
@@ -432,22 +442,22 @@ else if(strategija==2 && papildomi_algoritmai=='t')
                     if (strategija==1)
                     {
                         for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].vardas << " \t" << vykeliai2[j].pavarde << " \t" << std::fixed << std::setprecision(2) <<
+                        vykeliai << vykeliai2[j].getName() << " \t" << vykeliai2[j].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
                         vykeliai2[j].galutinis << std::endl; 
 
                         for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].vardas << " \t" << nevykeliai2[k].pavarde << " \t" << std::fixed << std::setprecision(2) <<
+                         nevykeliai << nevykeliai2[k].getName() << " \t" << nevykeliai2[k].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
                          nevykeliai2[k].galutinis << std::endl;
                     }
                    
                     else if (strategija==2)
                     {
                          for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].vardas << " \t" << vykeliai2[k].pavarde << " \t" << std::fixed << std::setprecision(2) <<
+                         vykeliai << vykeliai2[k].getName() << " \t" << vykeliai2[k].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
                          vykeliai2[k].galutinis << std::endl;
 
                          for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].vardas << " \t" << Studentas[j].pavarde << " \t" << std::fixed << std::setprecision(2) <<
+                        nevykeliai << Studentas[j].getName() << " \t" << Studentas[j].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
                         Studentas[j].galutinis << std::endl; 
                     }
                     
@@ -458,22 +468,22 @@ else if(strategija==2 && papildomi_algoritmai=='t')
                     if (strategija==1)
                     {
                          for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].vardas << " \t" << vykeliai2[j].pavarde << "\t" << std::fixed << std::setprecision(2) <<
+                        vykeliai << vykeliai2[j].getName() << " \t" << vykeliai2[j].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
                         vykeliai2[j].galutinis << std::endl;
 
                         for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].vardas << " \t" << nevykeliai2[k].pavarde << "\t" << std::fixed << std::setprecision(2) <<
+                         nevykeliai << nevykeliai2[k].getName() << " \t" << nevykeliai2[k].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
                          nevykeliai2[k].galutinis << std::endl;
                     }
                       
                     else if (strategija==2)
                     {
                          for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].vardas << " \t" << vykeliai2[k].pavarde << "\t" << std::fixed << std::setprecision(2) <<
+                         vykeliai << vykeliai2[k].getName() << " \t" << vykeliai2[k].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
                          vykeliai2[k].galutinis << std::endl;
 
                          for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].vardas << " \t" << Studentas[j].pavarde << "\t" << std::fixed << std::setprecision(2) <<
+                        nevykeliai << Studentas[j].getName() << " \t" << Studentas[j].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
                         Studentas[j].galutinis << std::endl; 
                     }
                 }
