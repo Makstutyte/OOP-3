@@ -22,13 +22,6 @@ class Studentas1
 
    inline Studentas1() : vardas("vardas"), pavarde("pavarde"), egz(0) { }
 
-   /*
-   inline Studentas1() 
-   {
-     	int egz = 0;
-   }
-   */
-
    inline ~Studentas1(){ }
 
     void setName(std::string);
@@ -42,6 +35,42 @@ class Studentas1
       int n = 0;
       double galutinis;
       std::vector<int> vektoriukas;
+
+      
+     Studentas1(const Studentas1& a)
+      {
+        vardas = a.vardas;
+        pavarde = a.pavarde;
+        egz = a.egz;
+        vektoriukas.reserve(a.vektoriukas.size());
+        copy(a.vektoriukas.begin(), a.vektoriukas.end(), back_inserter(vektoriukas));
+        n = a.n;
+        galutinis=a.galutinis;
+      }
+
+      Studentas1& operator = (const Studentas1& a)
+      {    
+	      	 if(&a==this) return *this;
+
+           vardas = a.vardas;
+           pavarde = a.pavarde;
+           galutinis = a.galutinis;
+           return *this;
+      }
+
+    inline friend bool operator >(const Studentas1& a, const Studentas1& b) { return a.galutinis > b.galutinis; }
+    inline friend bool operator <(const Studentas1& a, const Studentas1& b) { return a.galutinis < b.galutinis; }
+    inline friend bool operator >=(const Studentas1& a, const Studentas1& b) { return a.galutinis >= b.galutinis; }
+    inline friend bool operator <=(const Studentas1& a, const Studentas1& b) { return a.galutinis <= b.galutinis; }
+    inline friend bool operator ==(const Studentas1& a, const Studentas1& b) { return a.vardas == b.vardas && a.pavarde == b.pavarde && a.egz == b.egz &&
+        a.n == b.n && a.galutinis == b.galutinis && a.vektoriukas == b.vektoriukas; }
+    inline friend bool operator !=(const Studentas1& a, const Studentas1& b) { return !(a == b); }
+
+    
+    inline friend int operator + (const Studentas1& a, const Studentas1& b) { return a.egz + b.egz;} 
+    inline friend int operator - (const Studentas1& a, const Studentas1& b) { return a.egz - b.egz;} 
+    inline friend int operator * (const Studentas1& a, const Studentas1& b) { return a.egz * b.egz;}
+    inline friend int operator / (const Studentas1& a, const Studentas1& b) { return a.egz / b.egz;}
 
   private:
 
