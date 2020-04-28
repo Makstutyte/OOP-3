@@ -73,8 +73,16 @@ Programos veikimo laikų ir naudojant class duomenų tipą bei std::vector konte
 <br />[Objektinis-Programavimas-2-oji-uzduotis](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis) 
 
 ## Releases 
-<br />[v1.1](https://github.com/Makstutyte/OOP-3/releases/tag/v1.1) 
-Šeštoji programos versija
+<br />[v1.1](https://github.com/Makstutyte/OOP-3/releases/tag/v1.1.1) 
+Pirmoji programos versija
 * Patobulinta programa, kurioje:
    * vietoje struktūros (struct) duomenims saugoti yra taikomas klasės (class) duomenų tipas 
    * Klasėje (class) yra naudojamas konstruktorius ( constructor), destruktorius (destructor) bei get'eriai ir  set'eriai
+   
+<br />[v1.2](https://github.com/Makstutyte/OOP-3/releases/tag/v1.2)    
+Antroji programos versija
+* Patobulinimai programoje:
+   * pritaikyta Rule of three 
+   * pritaikyti papildomi operatoriai
+
+
