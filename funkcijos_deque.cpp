@@ -347,100 +347,43 @@ void kazkas_is_d_raides()
                         }
                    }
 
-
-                        vykeliai << "Vardas \t\tPavarde \t";
+                         vykeliai << std::setw(20) << std::left << "Vardas" << std::setw(20) << "Pavarde";  
                         if(vidurkis_mediana == 'm') vykeliai << "Galutinis (Med.)" << std::endl;
                         else  vykeliai << "Galutinis (Vid.)" << std::endl;
                         vykeliai << "-------------------------------------------------------------------" << std::endl;
                   
-                        nevykeliai << "Vardas \t\tPavarde \t";
+                        nevykeliai << std::setw(20) << std::left << "Vardas" << std::setw(20) << "Pavarde";  
                         if(vidurkis_mediana == 'm') nevykeliai << "Galutinis (Med.)" << std::endl;
                         else  nevykeliai << "Galutinis (Vid.)" << std::endl;
                         nevykeliai << "-------------------------------------------------------------------" << std::endl;
-                    
 
-                if(i_faila_ar_ne=='n' && skaitom_ivedam=='i')
-                {
+                 
                     if (strategija==1)
                     {
-                       for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].vardas << " \t\t" << vykeliai2[j].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
-                        vykeliai2[j].galutinis << std::endl;  
+                        for(int j=0; j<kiek2; j++)
+                         vykeliai << std::setw(20) << std::left << vykeliai2[j].vardas << std::setw(20) << vykeliai2[j].pavarde
+                          << std::fixed << std::setprecision(2) << vykeliai2[j].galutinis << std::endl; 
 
                         for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].vardas << " \t\t" << nevykeliai2[k].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
-                         nevykeliai2[k].galutinis << std::endl;
+                          nevykeliai << std::setw(20) << std::left << nevykeliai2[k].vardas << std::setw(20) << nevykeliai2[k].pavarde
+                          << std::fixed << std::setprecision(2) << nevykeliai2[k].galutinis << std::endl; 
                     }
                     
 
                     else if (strategija==2)
                     {
     
-                         for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].vardas << " \t\t" << vykeliai2[k].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
-                         vykeliai2[k].galutinis << std::endl;
+                       for(int j=0; j<kiek2; j++)
+                         vykeliai << std::setw(20) << std::left << vykeliai2[j].vardas << std::setw(20) << vykeliai2[j].pavarde
+                          << std::fixed << std::setprecision(2) << vykeliai2[j].galutinis << std::endl; 
 
-                         for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].vardas << " \t\t" << Studentas[j].pavarde << " \t\t" << std::fixed << std::setprecision(2) <<
-                        Studentas[j].galutinis << std::endl; 
+                        for (int k = 0; k<Studentas.size(); k++)
+                          nevykeliai << std::setw(20) << std::left << Studentas[k].vardas << std::setw(20) << Studentas[k].pavarde
+                          << std::fixed << std::setprecision(2) << Studentas[k].galutinis << std::endl; 
                          
                     }
 
-                }
-
-                else if(i_faila_ar_ne=='n' && skaitom_ivedam=='s')
-                {
-                    if (strategija==1)
-                    {
-                        for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].vardas << " \t" << vykeliai2[j].pavarde << " \t" << std::fixed << std::setprecision(2) <<
-                        vykeliai2[j].galutinis << std::endl; 
-
-                        for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].vardas << " \t" << nevykeliai2[k].pavarde << " \t" << std::fixed << std::setprecision(2) <<
-                         nevykeliai2[k].galutinis << std::endl;
-
-                    }
-                   
-                    else if (strategija==2)
-                    {
-                         for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].vardas << " \t" << vykeliai2[k].pavarde << " \t" << std::fixed << std::setprecision(2) <<
-                         vykeliai2[k].galutinis << std::endl;
-
-                         for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].vardas << " \t" << Studentas[j].pavarde << " \t" << std::fixed << std::setprecision(2) <<
-                        Studentas[j].galutinis << std::endl; 
-                    }
-                    
-                }
-
-                else if (i_faila_ar_ne=='t')
-                {
-                    if (strategija==1)
-                    {
-                         for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].vardas << " \t" << vykeliai2[j].pavarde << "\t" << std::fixed << std::setprecision(2) <<
-                        vykeliai2[j].galutinis << std::endl;
-
-                        for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].vardas << " \t" << nevykeliai2[k].pavarde << "\t" << std::fixed << std::setprecision(2) <<
-                         nevykeliai2[k].galutinis << std::endl;
-                    }
-                   
-                        
-                    else if (strategija==2)
-                    {
-                         for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].vardas << " \t" << vykeliai2[k].pavarde << "\t" << std::fixed << std::setprecision(2) <<
-                         vykeliai2[k].galutinis << std::endl;
-
-                         for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].vardas << " \t" << Studentas[j].pavarde << "\t" << std::fixed << std::setprecision(2) <<
-                        Studentas[j].galutinis << std::endl; 
-                    }
-                   
-                }
+ 
 }
 std::cout <<std::endl;
 std::cout << "Programos pabaiga" <<std::endl;
