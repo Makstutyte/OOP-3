@@ -80,7 +80,7 @@ Pirmoji programos versija
    * Klasėje (class) yra naudojamas konstruktorius ( constructor), destruktorius (destructor) bei get'eriai ir  set'eriai
    
 <br />[v1.2](https://github.com/Makstutyte/OOP-3/releases/tag/v1.2)    
-  Antroji programos versija
+ Antroji programos versija
 * Patobulinimai programoje:
    * pritaikyta Rule of three 
    * pritaikyti papildomi operatoriai
