@@ -398,95 +398,42 @@ else if(strategija==2 && papildomi_algoritmai=='t')
                         }
                    }
 
-                        vykeliai << "Vardas \t\tPavarde \t";
+                        vykeliai << std::setw(20) << std::left << "Vardas" << std::setw(20) << "Pavarde";  
                         if(vidurkis_mediana == 'm') vykeliai << "Galutinis (Med.)" << std::endl;
                         else  vykeliai << "Galutinis (Vid.)" << std::endl;
                         vykeliai << "-------------------------------------------------------------------" << std::endl;
                   
-                        nevykeliai << "Vardas \t\tPavarde \t";
+                        nevykeliai << std::setw(20) << std::left << "Vardas" << std::setw(20) << "Pavarde";  
                         if(vidurkis_mediana == 'm') nevykeliai << "Galutinis (Med.)" << std::endl;
                         else  nevykeliai << "Galutinis (Vid.)" << std::endl;
                         nevykeliai << "-------------------------------------------------------------------" << std::endl;
-                    
 
-                if(i_faila_ar_ne=='n' && skaitom_ivedam=='i')
-                {
+                 
                     if (strategija==1)
                     {
                        for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].getName() << " \t\t" << vykeliai2[j].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
-                        vykeliai2[j].galutinis << std::endl;  
+                         vykeliai << std::setw(20) << std::left << vykeliai2[j].getName() << std::setw(20) << vykeliai2[j].getSurname()
+                          << std::fixed << std::setprecision(2) << vykeliai2[j].galutinis << std::endl; 
 
                         for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].getName() << " \t\t" << nevykeliai2[k].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
-                         nevykeliai2[k].galutinis << std::endl;
+                             nevykeliai << std::setw(20) << std::left << nevykeliai2[k].getName() << std::setw(20) << nevykeliai2[k].getSurname()
+                          << std::fixed << std::setprecision(2) << nevykeliai2[k].galutinis << std::endl; 
+
                     }
                     
                     else if (strategija==2)
                     {
     
-                         for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].getName() << " \t\t" << vykeliai2[k].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
-                         vykeliai2[k].galutinis << std::endl;
+                       for(int j=0; j<kiek2; j++)
+                         vykeliai << std::setw(20) << std::left << vykeliai2[j].getName() << std::setw(20) << vykeliai2[j].getSurname()
+                          << std::fixed << std::setprecision(2) << vykeliai2[j].galutinis << std::endl; 
 
-                         for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].getName() << " \t\t" << Studentas[j].getSurname() << " \t\t" << std::fixed << std::setprecision(2) <<
-                        Studentas[j].galutinis << std::endl; 
+                        for (int k = 0; k<kiek1; k++)
+                             nevykeliai << std::setw(20) << std::left << Studentas[k].getName() << std::setw(20) << Studentas[k].getSurname()
+                          << std::fixed << std::setprecision(2) << Studentas[k].galutinis << std::endl; 
+
                          
                     }
-
-                }
-
-                else if(i_faila_ar_ne=='n' && skaitom_ivedam=='s')
-                {
-                    if (strategija==1)
-                    {
-                        for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].getName() << " \t" << vykeliai2[j].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
-                        vykeliai2[j].galutinis << std::endl; 
-
-                        for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].getName() << " \t" << nevykeliai2[k].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
-                         nevykeliai2[k].galutinis << std::endl;
-                    }
-                   
-                    else if (strategija==2)
-                    {
-                         for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].getName() << " \t" << vykeliai2[k].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
-                         vykeliai2[k].galutinis << std::endl;
-
-                         for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].getName() << " \t" << Studentas[j].getSurname() << " \t" << std::fixed << std::setprecision(2) <<
-                        Studentas[j].galutinis << std::endl; 
-                    }
-                    
-                }
-
-                else if (i_faila_ar_ne=='t')
-                {
-                    if (strategija==1)
-                    {
-                         for(int j=0; j<kiek2; j++)
-                        vykeliai << vykeliai2[j].getName() << " \t" << vykeliai2[j].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
-                        vykeliai2[j].galutinis << std::endl;
-
-                        for (int k = 0; k<kiek1; k++)
-                         nevykeliai << nevykeliai2[k].getName() << " \t" << nevykeliai2[k].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
-                         nevykeliai2[k].galutinis << std::endl;
-                    }
-                      
-                    else if (strategija==2)
-                    {
-                         for (int k = 0; k<kiek2; k++)
-                         vykeliai << vykeliai2[k].getName() << " \t" << vykeliai2[k].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
-                         vykeliai2[k].galutinis << std::endl;
-
-                         for(int j=0; j<Studentas.size(); j++)
-                        nevykeliai << Studentas[j].getName() << " \t" << Studentas[j].getSurname() << "\t" << std::fixed << std::setprecision(2) <<
-                        Studentas[j].galutinis << std::endl; 
-                    }
-                }
 }
 std::cout <<std::endl;
 std::cout << "Programos pabaiga" <<std::endl;
