@@ -1,4 +1,4 @@
-# Objektinis-Programavimas-2-oji-uzduotis
+# Objektinis-Programavimas-3-oji-uzduotis
 
 Programa, nuskaitanti vartotojo įvedamus, generuojamus (atskirus duomenis arba failus) arba iš failo perskaitomus duomenis ir pateikianti apskaičiuotus rezultatus
  
