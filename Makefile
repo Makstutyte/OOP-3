@@ -10,3 +10,5 @@ funkcijos_deque:
 	g++ -c funkcijos_deque.cpp
 oj:
 	g++ -c oj.cpp
+clean:
+	del *.o main
