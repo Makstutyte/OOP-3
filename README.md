@@ -79,7 +79,7 @@ Pirmoji programos versija
    * vietoje struktūros (struct) duomenims saugoti yra taikomas klasės (class) duomenų tipas 
    * Klasėje (class) yra naudojamas konstruktorius ( constructor), destruktorius (destructor) bei get'eriai ir  set'eriai
    
-<br />[v1.2](https://github.com/Makstutyte/OOP-3/releases/tag/v1.2)    
+<br />[v1.2](https://github.com/Makstutyte/OOP-3/releases/tag/v1.2.1)    
  Antroji programos versija
 * Patobulinimai programoje:
    * pritaikyta Rule of three 
