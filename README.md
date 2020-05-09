@@ -84,6 +84,11 @@ Pirmoji programos versija
 * Patobulinimai programoje:
    * pritaikyta Rule of three 
    * pritaikyti papildomi operatoriai
+   
+<br />[v1.5](https://github.com/Makstutyte/OOP-3/releases/tag/v1.5) 
+ Trečioji programos versija
+* Vietoje turimos vienos Studentas1 klasės sukurtos dvi: bazinė klasė, skirtą bendrai aprašyti žmogų bei iš jos išvestinė (derived) klasė - Studentas1
+*  žmogui skirta Base klasė yra abstrakčioji klasė, t.y.  galima sukurti žmogaus tipo objektų, o tik objektus gautus iš jos išvestinių klasių
 
 
  
