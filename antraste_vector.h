@@ -15,28 +15,35 @@
 
 const int daugiausia = 50;
 
-class Studentas1
+class Base
+{
+  protected:
+      std::string vardas;
+      std::string pavarde;
+
+      inline Base() : vardas("vardas"), pavarde("pavarde"){ }
+};
+
+class Studentas1 : protected Base
 {
 
   public:
 
-   inline Studentas1() : vardas("vardas"), pavarde("pavarde"), egz(0) { }
-
+   inline Studentas1() : Base{}, egz(0) { }
    inline ~Studentas1(){ }
-
-    void setName(std::string);
-    void setSurname(std::string);
-    void setExam(int);
 
     inline std::string getName() const {return vardas; };
     inline std::string getSurname() const { return pavarde; };
+    virtual void setName(std::string);
+    virtual void setSurname(std::string);
+
+    void setExam(int);
     inline int getExam() const { return egz;};
     
       int n = 0;
       double galutinis;
       std::vector<int> vektoriukas;
-
-      
+   
      Studentas1(const Studentas1& a)
       {
         vardas = a.vardas;
@@ -73,11 +80,10 @@ class Studentas1
     inline friend int operator / (const Studentas1& a, const Studentas1& b) { return a.egz / b.egz;}
 
   private:
-
-      std::string vardas;
-      std::string pavarde;
       int egz; 
+
 };
+
 
 void konteineris (char& simbolis, char pirmas, char antras, char trecias);
 void ar_tas_simboliukas (char& simbolis, char pirmas, char antras);
