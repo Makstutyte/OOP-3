@@ -69,6 +69,13 @@ Programos veikimo laikų ir naudojant class duomenų tipą bei std::vector konte
 | 10000000 | 81.0496  | 48.4198 | 46.6522 | 45.2916 |
 
 
+.exe failų dydžiai baitais
+| failo tipas | -o | -O1 | -O2 | -O3 |
+| ------------- | ------------- | ------------- | ------------- | ------------- | 
+| .exe  | 556 391 | 298 145 |  293 471 | 285 061 | 
+
+
+
 ## Ankstesnė užduotis
 <br />[Objektinis-Programavimas-2-oji-uzduotis](https://github.com/Makstutyte/Objektinis-Programavimas-2-oji-uzduotis) 
 
